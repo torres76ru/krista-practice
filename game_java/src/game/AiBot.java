@@ -11,13 +11,16 @@ public class AiBot {
     private int teamIndex;
     private int homePlanetIndex;
     private int[][] distanceMap;
-    List<Planet> planets;
+    private List<Planet> planets;
+
+    private List<Planet> myPlanets;
 
     public AiBot(Round round)
     {
         this.round = round;
         this.currentStep = 0;
         this.planets = new ArrayList<>();
+        this.myPlanets = new ArrayList<>();
         this.homePlanetIndex = -1;
     }
 
@@ -77,7 +80,7 @@ public class AiBot {
                 }
                if (armySended == false)
                {
-                   if (this.distanceMap[from][i] <  minDistance && this.distanceMap[from][i] <=  12)
+                   if (this.distanceMap[from][i] <  minDistance && this.distanceMap[from][i] <  12)
                    {
                        minDistance = this.distanceMap[from][i];
                        closestPlanetId = i;
@@ -96,23 +99,12 @@ public class AiBot {
         this.teamIndex = this.round.getTeamId();
         this.planets = this.round.getPlanets();
         this.distanceMap = this.round.getDistanceMap();
+        this.homePlanetIndex = round.getOwnPlanets().get(0).getId();
+        this.myPlanets = this.round.getOwnPlanets();
     }
     public void think()
     {
-        if (this.currentStep == 0)
-        {
-            if (this.teamIndex == 0)
-            {
-                this.homePlanetIndex = 0;
-            }
-            else
-            {
-                this.homePlanetIndex = this.round.getPlanets().size() - 1;
-            }
 
-            Planet homePlanet;
-            homePlanet = this.round.getPlanets().get(this.homePlanetIndex);
-        }
     }
     public void act()
     {
@@ -133,7 +125,16 @@ public class AiBot {
                     this.movingGroups.add(mG);
                 }
             }
+
         }
+//        if (this.currentStep == 1)
+//        {
+//            MovingGroup mG = new MovingGroup();
+//            mG.setFrom(this.homePlanetIndex);
+//            mG.setTo(4);
+//            mG.setCount(6);
+//            this.movingGroups.add(mG);
+//        }
     }
 
     public List<MovingGroup> getMovingGroups()
