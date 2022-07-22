@@ -407,7 +407,10 @@ public class AiBot {
         {
             MovingGroup mG = new MovingGroup();
             mG.setFrom(this.frontPlanetIndex);
-            mG.setTo(7);
+            if (this.teamIndex == 0)
+                mG.setTo(7);
+            else
+                mG.setTo(2);
             mG.setCount(15);
             this.movingGroups.add(mG);
         }
