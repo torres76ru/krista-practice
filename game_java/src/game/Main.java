@@ -19,7 +19,26 @@ public class Main {
     }
 
     private static List<MovingGroup> makeMove(Round round) {
-        //List<MovingGroup> movingGroups = new ArrayList<>();
+        List<MovingGroup> movingGroups = new ArrayList<>();
+//        if (round.getCurrentStep() == 0)
+//        {
+//            MovingGroup mG = new MovingGroup();
+//            mG.setFrom(9);
+//            mG.setTo(4);
+//            mG.setCount(5);
+//            movingGroups.add(mG);
+//        }
+//        if (round.getCurrentStep() == 0)
+//        {
+//            MovingGroup mG = new MovingGroup();
+//            mG.setFrom(9);
+//            mG.setTo(4);
+//            mG.setCount(15);
+//            movingGroups.add(mG);
+//        }
+
+
+//        return movingGroups;
         AiBot aiBot = new AiBot(round);
 
         return aiBot.getMovingGroups();
